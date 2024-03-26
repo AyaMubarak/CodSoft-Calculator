@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./index.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <form class="calculator">
+            <input type="text" class="value" name="txt" />
+            <span class="clear" value="C"><i>C</i></span>
+            <span class="div operator" value="/"><i>/</i></span>
+            <span class="mult operator" value='*'><i>*</i></span>
+            <span class="num" value='7'><i>7</i></span>
+            <span class="num" value='8'><i>8</i></span>
+            <span class="num" value='9'><i>9</i></span>
+            <span class="min operator" value='-'><i>-</i></span>
+            <span class="num" value='4'><i>4</i></span>
+            <span class="num" value='5'><i>5</i></span>
+            <span class="num" value='6'><i>6</i></span>
+            <span class="plus operator" value='+'><i>+</i></span>
+            <span class="num" value='1'><i>1</i></span>
+            <span class="num" value='2'><i>2</i></span>
+            <span class="num" value='3'><i>3</i></span>
+            <span class="num" value='0'><i>0</i></span>
+            <span class="num" value='00'><i>00</i></span>
+            <span class="decimal" value='.'><i>.</i></span>
+        
+            <span class="equal" value="="><i>=</i></span>
+        </form>
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const operator = document.querySelectorAll(".operator");
+            const decimal = document.querySelector(".decimal");
+            const result = document.querySelector(".value");
+            const number = document.querySelectorAll(".num");
+            const clear = document.querySelector(".clear");
+            const equal = document.querySelector(".equal");
+
+            number.forEach((numbers) => {
+                numbers.addEventListener("click", (e) => {
+                    result.value += e.target.textContent;
+                });
+            });
+
+            operator.forEach((oper) => {
+                oper.addEventListener("click", (e) => {
+                    result.value += e.target.textContent;
+                });
+            });
+
+            clear.addEventListener("click", () => {
+                result.value = "";
+            });
+
+            decimal.addEventListener("click", () => {
+                if (!result.value.includes(".")) {
+                    result.value += decimal.textContent;
+                }
+            });
+
+            equal.addEventListener("click", () => {
+                try {
+                    result.value = eval(result.value);
+                } catch (error) {
+                    result.value = "Error";
+                }
+            });
+        });
+    </script>
+</body>
+</html>
